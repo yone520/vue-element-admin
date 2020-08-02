@@ -1,5 +1,6 @@
 # vue-element-admin
-[http://www.baidu.com](源码)
+[源码](https://github.com/yone520/vue-element-admin-source)    
+[预览](https://yone520.github.io/vue-element-admin)
 
 这个项目模仿大佬来的，为什么模仿的话，其实不是我没事儿做，主要是因为权限的问题，很多开源项目的权限都是基于什么 [admin,editor] 来的，还有种是后端控制前端路由，这样现在很多开源项目都做不到了，包括 antd pro v4, v5是可以得了，但是比较React的，所以我来弄个vue版本的以后好用。
 
