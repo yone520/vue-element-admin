@@ -1,37 +1,60 @@
-## Welcome to GitHub Pages
+# vue-element-admin
+[http://www.baidu.com](源码)
 
-You can use the [editor on GitHub](https://github.com/yone520/vue-element-admin/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+这个项目模仿大佬来的，为什么模仿的话，其实不是我没事儿做，主要是因为权限的问题，很多开源项目的权限都是基于什么 [admin,editor] 来的，还有种是后端控制前端路由，这样现在很多开源项目都做不到了，包括 antd pro v4, v5是可以得了，但是比较React的，所以我来弄个vue版本的以后好用。
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## 技术栈
 
-### Markdown
+- ElementUI（2.5.4）
+- Vue（2.5.17）
+- Vuex（3.0.1）
+- VueRouter（3.0.1）
+- Axios（0.19.0）
+- lodash
+- moment
+- js-cookie
+- nprogress
+- vue-i18n
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## 登陆角色
 
-```markdown
-Syntax highlighted code block
+admin, editor, 任意输入
 
-# Header 1
-## Header 2
-### Header 3
+### 其实这里多少角色不是很重要，主要是看接口返回的可访问路由字段 
+// 类似这种，['canAdmin', 'canEditor', 'canEditorA', 'canEditorB', 'table']
 
-- Bulleted
-- List
+```javascript
+export const Login = ({
+  username,
+  password
+}) => {
+  return new Promise((resolve) => {
+    let role = ''
+    if (username === 'admin') { // 模拟admin
+      role = JSON.stringify(['canAdmin', 'canEditor', 'canEditorA', 'canEditorB', 'table']);
+    } else if (username === 'editor') { // 模拟editor
+      role = JSON.stringify(['canAdmin', 'canEditor', 'canEditorA']);
+    } else { // 如果后台没有返回，路由就只会渲染不需要任何权限的路由
+      role = JSON.stringify([])
+    }
+    setTimeout(() => {
+      resolve({
+        userInfo: {
+          username
+        },
+        token: 'fdaksfahsudfoajfjasd;flk',
+        role: role
+      })
+    }, 1000)
+  })
+}
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## 完成功能
+- [x] 登陆
+- [x] 多语言
+- [x] 角色切换
+- [x] 可搜索的路由
+- [ ] 网络请求(感觉没必要写，每个公司，大不同)
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/yone520/vue-element-admin/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
